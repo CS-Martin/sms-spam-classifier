@@ -8,7 +8,6 @@ from collections import Counter
 # Function to read a CSV file and handle potential file errors
 def read_csv(filepath):
     try:
-        # Attempt to read the CSV file
         return pd.read_csv(filepath, encoding="ISO-8859-1")
     except FileNotFoundError:
         print(f"Error: File not found at '{filepath}'.")
@@ -61,16 +60,14 @@ def classify_messages(test_data, ham_word_count, spam_word_count, ham_words, spa
 
 
 def main():
-    # Paths to the training and test datasets
     test_data_path = "Datasets/TestData.csv"
     training_data_path = "Datasets/TrainingData.csv"
     result_path = "Datasets/ResultData.csv"
 
-    # Load data from the CSV files
     test_data = read_csv(test_data_path)
     training_data = read_csv(training_data_path)
 
-    # Preprocess training data: remove duplicates and null messages
+    # Rremove duplicates and null messages
     training_data.drop_duplicates(inplace=True)
     training_data.dropna(subset=['message'], inplace=True)
 
@@ -98,7 +95,6 @@ def main():
     test_data.to_csv(result_path, index=False)
     print(f"Predicted data saved to {result_path}")
 
-# Entry point of the script
 if __name__ == '__main__':
     main()
 
