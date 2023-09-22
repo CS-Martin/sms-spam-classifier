@@ -29,7 +29,7 @@ def classify_messages(test_data, ham_word_count, spam_word_count, ham_words, spa
             p_word_ham_product *= calculate_word_probability(word, ham_word_count, ham_words, vocabulary)
 
         if p_word_spam_product > p_word_ham_product:
-            message_prediction.append("SPAM")
+            message_prediction.append('spam')
         else:
-            message_prediction.append("HAM")
-    test_data['predicted_label'] = message_prediction
+            message_prediction.append('ham')
+    test_data.insert(0, 'predicted_label', message_prediction)
